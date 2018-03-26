@@ -449,15 +449,17 @@ Ext.define("Netzke.Base", {
     this.netzkeShowLoadingMask(container);
 
     // Call the endpoint
-    this.server.deliverComponent(serverParams, function(result, success) {
-      this.netzkeHideLoadingMask(container);
+    if (this.server != undefined) {
+      this.server.deliverComponent(serverParams, function(result, success) {
+        this.netzkeHideLoadingMask(container);
 
-      if (success) {
-        this.netzkeHandleLoadingResponse(container, result, options);
-      } else {
-        this.netzkeHandleLoadingError(result);
-      }
-    });
+        if (success) {
+          this.netzkeHandleLoadingResponse(container, result, options);
+        } else {
+          this.netzkeHandleLoadingError(result);
+        }
+      });
+    }
   },
 
   /**
