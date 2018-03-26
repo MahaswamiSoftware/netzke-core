@@ -449,6 +449,8 @@ Ext.define("Netzke.Base", {
     this.netzkeShowLoadingMask(container);
 
     // Call the endpoint
+    if (this.server == undefined) return; //for undock window temp fix.
+
     this.server.deliverComponent(serverParams, function(result, success) {
       this.netzkeHideLoadingMask(container);
 
